@@ -37,20 +37,31 @@ while (dJ > epsilon) && (k < Nmax)
     k = k+1;
 end
 Time_calc = nanmean(soltime) + nanmean(soltimeL1) + nanmean(soltimeL2) + nanmean(soltimeL4) + nanmean(soltimeLAM1) + nanmean(soltimeLAM2) + nanmean(soltimeLAM4);
+percent_improvement = round((gamma(1)-gamma(k))/gamma(1)*10000)/100;
 
 %% double check
-if check == true
-    plantIsQSR = checkQSR(A,B2,C2,D22,Qp,Sp,Rp)
-    controllerIsQSR = checkQSR(Ac,Bc,Cc,Dc,Qcp+Qcm,Sc,Rc)
-    isStable = checkQSRtheorem(Qp,Sp,Rp,Qcp+Qcm,Sc,Rc)
-    Acl = [A-B2*Dc*C2 , -B2*Cc ; Bc*C2 , Ac];
-    Bcl = [B1-B2*Dc*D21; Bc*D21];
-    Ccl = [C1-D12*Dc*C2 , -D12*Cc];
-    Dcl = -D12*Dc*D21;
-    isGammaBounded_new = checkHinf(Acl,Bcl,Ccl,Dcl,gamma(k))
-    format bank
-    percent_improvement = round((gamma(1)-gamma(k))/gamma(1)*10000)/100
-    format long
+plantIsQSR = checkQSR(A,B2,C2,D22,Qp,Sp,Rp);
+if ~plantIsQSR
+    disp('Error with Plant QSR bound')
+end
+
+controllerIsQSR = checkQSR(Ac,Bc,Cc,Dc,Qcp+Qcm,Sc,Rc);
+if ~controllerIsQSR
+    disp('Error with controller QSR bound')
+end
+
+isStable = checkQSRtheorem(Qp,Sp,Rp,Qcp+Qcm,Sc,Rc);
+if ~isStable
+    disp('Error with Dissipativity Theorem')
+end
+
+Acl = [A-B2*Dc*C2 , -B2*Cc ; Bc*C2 , Ac];
+Bcl = [B1-B2*Dc*D21; Bc*D21];
+Ccl = [C1-D12*Dc*C2 , -D12*Cc];
+Dcl = -D12*Dc*D21;
+isGammaBounded_new = checkHinf(Acl,Bcl,Ccl,Dcl,gamma(k));
+if ~isGammaBounded_new
+    disp('Error with H-infinity bound')
 end
 
 %% save data
