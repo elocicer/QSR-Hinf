@@ -1,7 +1,7 @@
 # QSR-Hinf
 Code repository for Dissipativity-Augmented H-infinity Control
 
-This project designs an H-infinity controller satisfying a prescribed QSR-dissipativity constraint. The code is based on Algorithm 1  from the manuscript “Dissipativity-Based Robust Control with H-infinity Optimal Performance” by Ethan J LoCicero and Leila Bridgeman, which is currently under review for presentation at IFAC World Congress 2023. Please note, there are two important differences between this code and Algorithm 1. First, the initialization procedure does not use QSRcd (i.e. Algorithm 2). Instead, it uses a simpler procedure to arrive at an initial feasible point, which can only handle stable plants. Second, Qc is not required to be negative definite. This results in some changes to the QSR LMI from Theorem 5. These differences exist because this project is a more basic proof of concept for the iterative convex overbounding approach than the final product presented in the manuscript. As such, this project cannot be used to replicate exact results from the paper.
+This project designs an H-infinity controller satisfying a prescribed QSR-dissipativity constraint. The code is based on Algorithm 1  from the manuscript “Dissipativity-Based Robust Control with H-infinity Optimal Performance” by Ethan J LoCicero and Leila Bridgeman, which is currently under review for presentation at IFAC World Congress 2023.
 
 
 To use this project, run main.m. This function adds the subfolder paths, then runs the three major scripts below, which are in the Main Functions folder:
@@ -19,3 +19,7 @@ Furthermore, these scripts call several other functions, which are stored in the
 -	checkQSRtheorem.m determines whether two sets of QSR-dissipative bounds satisfy the Dissipativity Theorem
 -	checkHinf.m determines whether an LTI system satisfies an H-infinity norm bound
 -	UpdateL_.m and UpdateLambda_.m solve optimization problems to initialize or update weighting matrices between iterations.
+
+Please note, there are two important differences between this code and Algorithm 1. First, the initialization procedure does not use QSRcd (i.e. Algorithm 2). Instead, it uses a simpler procedure to arrive at an initial feasible point, which can only handle stable plants. Second, Qc is not required to be negative definite. This results in some changes to the QSR LMI from Theorem 5. These differences exist because this project is a more basic proof of concept for the iterative convex overbounding approach than the final product presented in the manuscript. 
+
+As such, this project cannot be used to replicate exact results from the paper.
