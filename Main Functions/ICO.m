@@ -5,9 +5,7 @@
 % This script runs the iterations of iterative convex overbounding
 % (Algorithm 1).
 
-close all
 clear
-clc
 
 %% load initial feasible point
 load('initialization.mat')
