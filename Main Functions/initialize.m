@@ -9,9 +9,6 @@
 % theorem. Thi contorller must result in a finite H-infinity norm and must
 % have QSR properties satisfying the Dissipativity Theorem.
 
-close all
-clear
-clc
 
 %% load plant
 load('plantdata.mat')
@@ -69,4 +66,3 @@ eps = .01;
 
 %% save data
 save('initialization.mat')
-disp('Done')
