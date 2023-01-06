@@ -6,8 +6,7 @@
 % plantdata.mat
 
 clear
-close all
-clc
+
 %% make random stable plant
 state     = randi(10); % plant state dimension
 ctrlstate = randi(10); % desired controller state dimension
