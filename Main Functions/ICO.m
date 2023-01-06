@@ -13,7 +13,7 @@ load('initialization.mat')
 %% set hyperparameters
 eps_main = 10^(-4);             % definiteness tolerance in main iteration LMIs
 eps_update = .01;               % definiteness tolerance in weight update LMIs
-check = true;                   % double check validity of results?
+check = false;                  % double check validity of results?
 Nmax = 1001;                    % maximum number of iterations
 epsilon = 10^-2;                % iteration convergence tolerance
 gamma = [gamma, nan(1,Nmax-1)]; % initialize gamma vector
