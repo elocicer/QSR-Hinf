@@ -1,7 +1,8 @@
 # QSR-Hinf
 Code repository for Dissipativity-Augmented H-infinity Control
 
-This project designs an H-infinity controller satisfying a prescribed QSR-dissipativity constraint. The code is based on Algorithm 1  from the manuscript “Dissipativity-Based Robust Control with H-infinity Optimal Performance” by Ethan J LoCicero and Leila Bridgeman, which is currently under review for presentation at IFAC World Congress 2023.
+This project designs an H-infinity controller satisfying a prescribed QSR-dissipativity constraint. The code is based on Algorithm 1  from the manuscript “Dissipativity-Based Robust Control with H-infinity Optimal Performance” by Ethan J LoCicero and Leila Bridgeman, which is currently under review for presentation at IFAC World Congress 2023. Please note, there are two important differences between this code and Algorithm 1. First, the initialization procedure does not use QSRcd (i.e. Algorithm 2). Instead, it uses a simpler procedure to arrive at an initial feasible point, which can only handle stable plants. Second, Qc is not required to be negative definite. This results in some changes to the QSR LMI from Theorem 5. These differences exist because this project is a more basic proof of concept for the iterative convex overbounding approach than the final product presented in the manuscript. As such, this project cannot be used to replicate exact results from the paper.
+
 
 To use this project, run main.m. This function adds the subfolder paths, then runs the three major scripts below, which are in the Main Functions folder:
 1.	plant.m. This randomly generates an LTI system for which the controller will be designed and stores the data in plantdata.mat. Alternatively, a different (stable) system of interest could be constructed and stored in plantdata.mat, as long as its dimensions and matrices are assigned in plant.m.
@@ -14,8 +15,7 @@ Furthermore, these scripts call several other functions, which are stored in the
 -	HinfCD.m adjusts the output matrices of a given system to satisfy a desired H-infinity norm
 -	findQSRboth.m identifies complementary QSR descriptions of two systems that satisfy the Dissipativity Theorem
 -	HinfQSRsimple.m solves the main optimization problem in each step of Algorithm 1 in order to minimize the closed-loop H-infinity norm.
--	UpdateL_.m and UpdateLambda_.m solve optimization problems to initialize or update weighting matrices between iterations.
 -	checkQSR.m determines whether an LTI system satisfies certain QSR-dissipativity bounds
 -	checkQSRtheorem.m determines whether two sets of QSR-dissipative bounds satisfy the Dissipativity Theorem
 -	checkHinf.m determines whether an LTI system satisfies an H-infinity norm bound
-![image](https://user-images.githubusercontent.com/113639576/211097022-d2858a7f-d607-4dea-b3b5-69944ee1f1cd.png)
+-	UpdateL_.m and UpdateLambda_.m solve optimization problems to initialize or update weighting matrices between iterations.
