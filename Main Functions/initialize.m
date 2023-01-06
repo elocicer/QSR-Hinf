@@ -9,6 +9,7 @@
 % theorem. Thi contorller must result in a finite H-infinity norm and must
 % have QSR properties satisfying the Dissipativity Theorem.
 
+clear
 
 %% load plant
 load('plantdata.mat')
